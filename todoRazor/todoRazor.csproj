@@ -11,8 +11,11 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Templates\**" />
     <Folder Include="wwwroot\lib\" />
   </ItemGroup>
-
+  <ItemGroup>
+    <None Include="Templates\_Template.cshtml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+</ItemGroup>
 </Project>
