@@ -32,5 +32,10 @@ app.UseStaticFiles();
 
 app.MapGet("/todos", (IHttpClientFactory httpClientFactory) => new HtmlContentResult(Components.TodoList(HttpClientFactoryService.GetTodoItems(httpClientFactory))));
 
+app.MapGet("/v2/todos", (IHttpClientFactory httpClientFactory) =>
+{
+    var result = new PageHtmlRender();
+    return result.RenderPageContent(Components.TodoList(HttpClientFactoryService.GetTodoItems(httpClientFactory)));
+});
 
 app.Run();

@@ -11,7 +11,7 @@ public class HttpClientFactoryService : IHttpClientServiceImplementation
         _httpClientFactory = httpClientFactory;
     }
 
-    internal static List<TodoItem> GetTodoItems(IHttpClientFactory httpClientFactory)
+    internal static List<Todo.TodoItem> GetTodoItems(IHttpClientFactory httpClientFactory)
     {
         HttpClient client = httpClientFactory.CreateClient();
         HttpResponseMessage response = client.GetAsync("http://localhost:5197/todos").Result;
@@ -19,7 +19,7 @@ public class HttpClientFactoryService : IHttpClientServiceImplementation
         if (response.IsSuccessStatusCode)
         {
             string content = response.Content.ReadAsStringAsync().Result;
-            List<TodoItem> todoItems = JsonConvert.DeserializeObject<List<TodoItem>>(content);
+            List<Todo.TodoItem> todoItems = JsonConvert.DeserializeObject<List<Todo.TodoItem>>(content);
         return todoItems;
         }
         else
