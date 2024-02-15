@@ -48,6 +48,16 @@ namespace todoApi
         {
             return _db.GetCollection<TodoModel>("todoApi_db").FindById(id) != null;
         }
+
+        public void Delete(int key)
+        {
+            var todo = _db.GetCollection<TodoModel>("todoApi_db").FindById(key);
+
+            if (todo != null)
+            {
+                _db.GetCollection<TodoModel>("todoApi_db").Delete(todo.Id);
+            }
+        }
     }
 
     public interface ICacheService
@@ -66,5 +76,8 @@ namespace todoApi
 
         // Check if todo item exists
         bool ContainsKey(int id);
+
+        // Delete todo item by id
+        void Delete(int key);
     }
 }
